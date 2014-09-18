@@ -117,6 +117,7 @@ typedef enum MTMessageType {
 // the delegate of the overlay
 @property (nonatomic, unsafe_unretained) id<MTStatusBarOverlayDelegate> delegate;
 @property(nonatomic, strong) UIColor *customTextColor;
+@property(nonatomic, strong) UIColor *customBackgroundColor;
 //===========================================================
 #pragma mark -
 #pragma mark Class Methods
@@ -196,4 +197,10 @@ typedef enum MTMessageType {
 // is called when an immediate message gets posted and therefore messages in the queue get lost
 // it tells the delegate the lost messages and the delegate can then enqueue the messages again
 - (void)statusBarOverlayDidClearMessageQueue:(NSArray *)messageQueue;
+// is called to ask for custom text color for a specific message type.
+- (void)statusBarOverlay:(MTStatusBarOverlay*)overlay backgroundColorForMessageType:(MTMessageType)messageType;
+// is called to ask for custom background color for a specific message type.
+- (void)statusBarOverlay:(MTStatusBarOverlay*)overlay textColorForMessageType:(MTMessageType)messageType;
+// is called to ask for custom shadow coor for a specific message type.
+- (void)statusBarOverlay:(MTStatusBarOverlay*)overlay shadowColorForMessageType:(MTMessageType)messageType;
 @end
